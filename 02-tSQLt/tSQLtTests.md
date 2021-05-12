@@ -47,7 +47,7 @@ V části A je popis testů, které kontrolují existenci klíčových tabulek, 
 
 | Testovací požadavek | Název TestClass v databázi AdventureWorks2019 | Název Testu v databázi AdventureWorks2019 | Testovaná procedura |
 |---|---|---|---|
-|Otestujte proceduru [Production].[CreateWorkOrder] nahrazením hodnot v hranatých závorkách vašimi hodnotami | Test_WorkOrderRouting_Fake | test 05 InsertWorkOrder NahradteVasimJmenem   | Production.CreateWorkOrder|
+|Otestujte proceduru [Production].[CreateWorkOrder] nahrazením hodnot v hranatých závorkách v testu [test 05 InsertWorkOrder NahradteVasimJmenem] vašimi hodnotami | Test_WorkOrderRouting_Fake | test 05 InsertWorkOrder NahradteVasimJmenem   | Production.CreateWorkOrder|
 <br>
 
 
