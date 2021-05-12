@@ -22,7 +22,7 @@ Na konci dokumentu můžete najít informace o tabulkách databázi v AdventureW
 
 <br>
 
-> Úkol: Tento Smoke test doplňtě do souboru TestDefinitionsWorkshop.yaml:
+> Úkol: Tento Smoke test doplňte do souboru TestDefinitionsWorkshop.yaml:
 
 | Testovací požadavek | Název tabulky v databázi AdventureWorks2019 | Query |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ Na konci dokumentu můžete najít informace o tabulkách databázi v AdventureW
 
 <br>
 
-> Úkol: Tento Integrační test doplňtě do souboru TestDefinitionsWorkshop.yaml:
+> Úkol: Tento Integrační test doplňte do souboru TestDefinitionsWorkshop.yaml:
 
 | Testovací požadavek | Tabulka v AdventureWorks2019 | Tabulka v AdventureWorksDW2019 | Query AdventureWorks2019 | Query AdventureWorksDW2019 |
 |---|---|---|---|---|
