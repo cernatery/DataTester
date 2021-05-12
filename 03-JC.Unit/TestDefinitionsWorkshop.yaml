@@ -1,0 +1,120 @@
+Connection:
+#--------------------------------------------------------------------------------#
+  - 
+    ConnectionName: AW
+    ConnectionType: SqlServer
+    ConnectionString: Data Source=sql-qalab.database.windows.net;Uid=tester;Pwd=Superstar68;Initial Catalog=AdventureWorks2019;
+  - 
+    ConnectionName: AWDW
+    ConnectionType: SqlServer
+    ConnectionString: Data Source=sql-qalab.database.windows.net;Uid=tester;Pwd=Superstar68;Initial Catalog=AdventureWorksDW2019;
+  - 
+    ConnectionName: DQaaS
+    ConnectionType: Pbix
+    ConnectionString: DQaaS Lab
+#--------------------------------------------------------------------------------#   
+   
+Test:
+#--------------------------------------------------------------------------------#
+  -
+    TestSuite: Smoke tests
+    Order: 1
+    TestCase: Production.Product
+    TestName: SafetyStockLevel
+    TestDescription: SafetyStockLevel should not be 0
+    TestQuerySource: AW
+    TestQuery: >
+      SELECT SafetyStockLevel FROM [Production].[Product]
+      WHERE SafetyStockLevel = 0 OR SafetyStockLevel IS NULL
+    TestTypeName: ZeroRows
+    Categories: Production
+#--------------------------------------------------------------------------------#
+  -
+    TestSuite: Smoke tests
+    Order: 2
+    TestCase: Production.Product
+    TestName: StandardCost
+    TestDescription: StandardCost must not be higher than ListPrice
+    TestQuerySource: AW
+    TestQuery: >
+      SELECT StandardCost, ListPrice FROM [Production].[Product]
+      WHERE StandardCost > ListPrice
+    TestTypeName: ZeroRows
+    Categories: Production
+#--------------------------------------------------------------------------------#
+  -
+    TestSuite: Smoke tests
+    Order: 3
+    TestCase: Production.Product
+    TestName: SellStartDate
+    TestDescription: SellStartDate must be a valid date in 21st century
+    TestQuerySource: AW
+    TestQuery: >
+      SELECT SellStartDate FROM [Production].[Product]
+      WHERE SellStartDate < 2000-01-01
+    TestTypeName: ZeroRows
+    Categories: Production
+#--------------------------------------------------------------------------------#
+
+
+# Prostor pro pridani Smoke testu
+
+
+#--------------------------------------------------------------------------------#
+  -
+    TestSuite: Integration tests
+    Order: 1
+    TestCase: Production.Product x dbo.DimProduct
+    TestName: Values of Product Name
+    TestDescription: Values of Name should match values of EnglishProductName
+    TestQuerySource: AW
+    TestQuery: >
+      SELECT Name
+      FROM [Production].[Product]
+      ORDER BY Name
+    ReferenceQuerySource: AWDW
+    ReferenceQuery: > 
+      SELECT DISTINCT EnglishProductName
+      FROM [dbo].[DimProduct]
+      ORDER BY EnglishProductName
+    TestTypeName: SameData
+    Categories: Production
+#--------------------------------------------------------------------------------#
+  -
+    TestSuite: Integration tests
+    Order: 2
+    TestCase: dbo.FactProductInventory x dbo.DimProduct
+    TestName: Values of Product
+    TestDescription: Each Product should have a record in FactProductInventory table
+    TestQuerySource: AWDW
+    TestQuery: >
+      SELECT COUNT(DISTINCT ProductKey) DistinctProductKey
+      FROM [dbo].[FactProductInventory]
+    ReferenceQuerySource: AWDW
+    ReferenceQuery: > 
+      SELECT COUNT(DISTINCT ProductKey) DistinctProductKey
+      FROM [dbo].[DimProduct]
+    TestTypeName: SameData
+    Categories: Production
+#--------------------------------------------------------------------------------#
+ 
+
+# Prostor pro pridani Integracniho testu
+
+
+#--------------------------------------------------------------------------------#
+  -
+    TestSuite: E2E tests
+    Order: 1
+    TestCase: Production.Product
+    TestName: Product Names
+    TestDescription: Check that there are the same product names in AW DB and in PBI report
+    TestQuerySource: AW
+    TestQuery: >
+      SELECT COUNT (DISTINCT ProductNumber) FROM [Production].[Product]
+    ReferenceQuerySource: DQaaS
+    ReferenceQuery: > 
+      EVALUATE ROW("Count", DISTINCTCOUNT('DimProduct'[ProductAlternateKey]))
+    TestTypeName: SameData
+    Categories: Production
+#--------------------------------------------------------------------------------#
