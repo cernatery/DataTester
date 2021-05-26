@@ -25,4 +25,9 @@ Níže jsou uvedeny informace o vytvořených testech.
 | Spuštění JC.Unitu a kontrola výsledků testů Power BI reportu | 07-RunPBITests.Tests.ps1 | V bloku ‘BeforeAll’ je spuštěn PowerBI report a JC.Unit testy. ‘Should -Be’ otestuje, že se spustilo právě 12 JC.Unit testů, a také zkontroluje jejich výsledky. V bloku ‘AfterAll’ je zavřen Power BI report, a výsledky JC.Unit testů jsou nahrány do databáze. |
 <br>
 
+> Úkol:
+
+| Testovací požadavek | Název testu | Popis |
+|---|---|---|
+| Spuštění tSQLt Test_WorkOrderRouting_Ukol TestClass a kontrola výsledků | 08-RuntSQLt_Ukol.Tests.ps1 | Invoke-Sqlcmd spustí tSQLt testy. ‘Should -Be‘ kontroluje, jestli má nějaký test v tabulce TestResults status ‘failure’. |
 
