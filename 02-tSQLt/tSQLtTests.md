@@ -26,7 +26,7 @@ Samotný test je uložená procedura.
 
 A takto může vypadat samotný test:
 
-![Test](Images/media/test.png)
+![Test](Images/media/testtSQLt.png)
 
 
 V části A je popis testů, které kontrolují existenci klíčových tabulek, v části B najdete Scenario testy.
