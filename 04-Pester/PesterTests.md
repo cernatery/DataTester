@@ -8,6 +8,8 @@ Pester se nejčastěji používá pro psaní unit a integračních testů, ale m
 
 Více o Pesteru se můžete dozvědět [zde](https://pester.dev/docs/quick-start).
 
+Struktura Pester testu k nahlédnutí [zde](https://github.com/cernatery/DataTester/blob/main/04-Pester/Template_Get-Planet.Tests.ps1).
+
 V případě Adventure Works testujeme existenci databáze a tabulek, spouštíme tSQLt testy a JC.Unit testy, a vytváříme scenario test stejně jako v tSQLt.
 
 Níže jsou uvedeny informace o vytvořených testech.
