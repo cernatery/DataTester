@@ -65,9 +65,9 @@ Inflating remote connection
 
 -   A zadejte jméno a heslo
 
-    -   Jméno: **tester**
+    -   Jméno: **supertester**
 
-    -   Heslo: **Superstar68**
+    -   Heslo: **Superstar78**
 
 
 ![Machine generated alternative text: Windows Security Enter your
