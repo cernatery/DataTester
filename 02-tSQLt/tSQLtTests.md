@@ -44,7 +44,7 @@ V části A je popis testů, které kontrolují existenci klíčových tabulek, 
 | Testovací požadavek | Název TestClass v databázi AdventureWorks2019 | Název Testu v databázi AdventureWorks2019 | Testovaná procedura |
 |---|---|---|---|
 |Po spuštění procedury [Production].[CreateWorkOrder] se do tabulek WorkOrder a WorkOrderRouting vloží právě 1 řádek                                                            | Test_WorkOrderRouting_Fake                  | test 01 InsertWorkOrder                  | Production.CreateWorkOrder|
-|Po jednom spuštění procedury [Production].[MoveWorkOrder] je do tabulky WorkOrderRouting vložen nový řádek (jsou tam celkem 2) a hodnoty OperationSequence nejsou NULL         | Test_WorkOrderRouting_Fake                  | test 02 UpdateWorkOrderRouting           | Production.MoveWorkOrder|
+|Po jednom spuštění procedury [Production].[MoveWorkOrder] je do tabulky WorkOrderRouting vložen nový řádek (jsou tam celkem 2) s hodnotami OperationSequence = 2 a LocationID = 20        | Test_WorkOrderRouting_Fake                  | test 02 UpdateWorkOrderRouting           | Production.MoveWorkOrder|
 |Po spuštění procedury [Production].[FinishWorkOrder] je do tabulky WorkOrderRouting vložen nový řádek (jsou tam celkem 2) s hodnotami OperationSequence = 7 a LocationID = 60  | Test_WorkOrderRouting_Fake                  | test 03 CloseWorkOrder                   | Production.FinishWorkOrder |
 
 <br>
