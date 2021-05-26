@@ -14,8 +14,11 @@ Odkaz na oficiální stránky tSQLt frameworku: [tsqlt.org](https://tsqlt.org/)
 
 ### Struktura tSQLt testu:
 
-tSQLt testy jsou exekuovány v rámci vámi zvolené databáze. <br>
-TestClass představuje databázové schéma, samotný test je uložená procedura.
+tSQLt testy jsou exekuovány v rámci námi zvolené databáze, v našem případě v databázi AdventureWorks2019. Pokud bychom chtěli testovat další databázi, museli bychom tSQLt nainstalovat znovu.
+
+TestClass představuje databázové schéma, a v rámci dané TestClass můžeme vytvořit Setup pro testy, a n testů. 
+
+Samotný test je uložená procedura.
 
 ![Struktura](Images/media/image1.png)
 
@@ -36,9 +39,9 @@ V části A je popis testů, které kontrolují existenci klíčových tabulek, 
 
 | Testovací požadavek | Název TestClass v databázi AdventureWorks2019 | Název Testu v databázi AdventureWorks2019 | Testovaná procedura |
 |---|---|---|---|
-|Po spuštění procedury [Production].[CreateWorkOrder] se do tabulek WorkOrder a WorkOrderRouting vloží právě 1 řádek                                                       | Test_WorkOrderRouting_Fake                  | test 01 InsertWorkOrder                  | Production.CreateWorkOrder|
-|Po jednom spuštění procedury [Production].[MoveWorkOrder] je do tabulky WorkOrderRouting vložen nový řádek a hodnoty nejsou NULL                                           | Test_WorkOrderRouting_Fake                  | test 02 UpdateWorkOrderRouting           | Production.MoveWorkOrder|
-|Po spuštění procedury [Production].[FinishWorkOrder] je do tabulky WorkOrderRouting vložen nový řádek s hodnotami OperationSequence = 7 a LocationID = 60             | Test_WorkOrderRouting_Fake                  | test 03 CloseWorkOrder                   | Production.FinishWorkOrder |
+|Po spuštění procedury [Production].[CreateWorkOrder] se do tabulek WorkOrder a WorkOrderRouting vloží právě 1 řádek                                                            | Test_WorkOrderRouting_Fake                  | test 01 InsertWorkOrder                  | Production.CreateWorkOrder|
+|Po jednom spuštění procedury [Production].[MoveWorkOrder] je do tabulky WorkOrderRouting vložen nový řádek (jsou tam celkem 2) a hodnoty OperationSequence nejsou NULL         | Test_WorkOrderRouting_Fake                  | test 02 UpdateWorkOrderRouting           | Production.MoveWorkOrder|
+|Po spuštění procedury [Production].[FinishWorkOrder] je do tabulky WorkOrderRouting vložen nový řádek (jsou tam celkem 2) s hodnotami OperationSequence = 7 a LocationID = 60  | Test_WorkOrderRouting_Fake                  | test 03 CloseWorkOrder                   | Production.FinishWorkOrder |
 
 <br>
 
@@ -46,7 +49,7 @@ V části A je popis testů, které kontrolují existenci klíčových tabulek, 
 
 | Testovací požadavek | Název TestClass v databázi AdventureWorks2019 | Název Testu v databázi AdventureWorks2019 | Testovaná procedura |
 |---|---|---|---|
-|Otestujte proceduru [Production].[CreateWorkOrder] nahrazením hodnot v hranatých závorkách v testu [test 01 InsertWorkOrder NahradteVasimJmenem] vašimi hodnotami | Test_WorkOrderRouting_Ukol | test 01 InsertWorkOrder NahradteVasimJmenem | Production.CreateWorkOrder|
+|Otestujte proceduru [Production].[CreateWorkOrder] nahrazením hodnot v hranatých závorkách v testu [test 01 InsertWorkOrder NahradteVasimJmenem] vašimi hodnotami a spusťte test | Test_WorkOrderRouting_Ukol | test 01 InsertWorkOrder NahradteVasimJmenem | Production.CreateWorkOrder|
 <br>
 
 
