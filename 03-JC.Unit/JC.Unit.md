@@ -4,13 +4,40 @@
 
 V případě JC.Unit testů pracujeme s databázemi AdventureWorks2019 a AdventureWorksDW2019, které shromažďují data o fiktivním nadnárodním výrobci jízdních kol Adventure Works Cycles, a s Power BI reportem DQaaS Lab, který používá CEO, šéf oddělení produkce a developerský tým.
 
-Data je potřeba kontrolovat, protože jsou na jejich základě tvořena důležitá byznysová rozhodnutí.
+Data je potřeba kontrolovat, protože jsou na jejich základě tvořena důležitá byznysová rozhodnutí. Klíčoví stakeholdeři a šéfové oddělení produkce sepsali pro QA základní požadavky, které data musí splňovat.
 
-Šéf oddělení produkce byl požádán, aby sepsal požadavky, která mají data splňovat.
+## Struktura Smoke testu v souboru TestDefinitions.yaml
+
+![Smoke](Images/media/Smoke.jpg)
+
+**TestSuite:** Název sady několika test cases, může být jakýkoli, například pod TestSuite zahrneme všechny Smoke testy. <br>
+**Order:** Pořadí testu. <br>
+**TestCase:** Název sady několika testů, může být jakýkoli, například název tabulky, pro kterou budeme tvořit více samostatných testů. <br>
+**TestName:** Název pro test, může být jakýkoli, ale měli bychom z něj poznat, o co nám v testu jde. Z TestSuite, Order, TestCase a TestName JC.Unit složí celý název testu, takže bude vypadat například takto *[Smoke Sales].[1].[Sales.CreditCard].[Len of Card Number]*. <br>
+**TestDescription:** Krátký popis testu - všem by pak mělo být jasné, o co v testu jde, pokud bude zkoumat bug. <br>
+**TestQuerySource:** Název (alias) databáze nebo jiného zdroje, ve kterém bude exekuována query. Jedná se o ConnectionName, které jsme si definovali. <br>
+**TestQuery:** Samotná query/dotaz do databáze nebo jiného zdroje. <br>
+**TestTypeName:** Pro Smoke testy v tomto případě používáme **ZeroRows**. U ZeroRows JC.Unit očekává, že se nám nevrátí žádné hodnoty po exekuci query/dotazu. Pokud se nějaká hodnota vrátí, test spadne.
+
+## Struktura Integračního testu v souboru TestDefinitions.yaml
+
+![Int](Images/media/Int.jpg)
+
+**TestSuite:** Název sady několika test cases, může být jakýkoli, například pod TestSuite zahrneme všechny Integrační testy. <br>
+**Order:** Pořadí testu. <br>
+**TestCase:** Název sady několika testů, může být jakýkoli, například názvy tabulek, pro které budeme tvořit více samostatných testů. <br>
+**TestName:** Název pro test, může být jakýkoli, ale měli bychom z něj poznat, o co nám v testu jde. Z TestSuite, Order, TestCase a TestName JC.Unit složí celý název testu, takže bude vypadat například takto *[Integration Sales].[1].[Sales.SalesTerritory x dbo.DimSalesTerritory].[Values of SalesTerritoryRegion]*. <br>
+**TestDescription:** Krátký popis testu - všem by pak mělo být jasné, o co v testu jde, pokud bude zkoumat bug. <br>
+**TestQuerySource:** Název (alias) databáze nebo jiného zdroje, ve kterém bude exekuována první query. Jedná se o ConnectionName, které jsme si definovali. <br>
+**TestQuery:** Samotná query/dotaz do databáze nebo jiného zdroje. <br>
+**ReferenceQuerySource:** Název (alias) databáze nebo jiného zdroje, ve kterém bude exekuována druhá referenční query. Jedná se o ConnectionName, které jsme si definovali. <br>
+**ReferenceQuery:** Samotná query/dotaz do databáze nebo jiného zdroje. <br>
+**TestTypeName:** Pro Integrační testy v tomto případě používáme **SameData**. U SameData JC:Unit očekává, že se nám z obou query/dotazů vrátí stejné hodnoty. Pokud hodnoty nejsou stejné, test spadne. Záleží na pořadí hodnot, proto používáme Order by.
 
 V části A jsou sepsány požadavky na Smoke testy, v části B jsou požadavky na integrační testy pro tabulky v databázi AdventureWorks2019 a tabulky v databázi AdventureWorksDW2019. V části C je End to end test.
 
-Na konci dokumentu můžete najít informace o tabulkách databázi v AdventureWorks2019.
+Na konci dokumentu můžete najít informace o tabulkách v
+AdventureWorks2019.
 
 ## A)  Smoke testy
 
